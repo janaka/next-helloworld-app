@@ -14,7 +14,7 @@ RUN npm ci
 RUN npm run build
 
 # Install OpenNext and transform the build
-RUN npx @opennext/aws build
+RUN npx @opennextjs/aws@latest build
 
 # Production stage - minimal runtime
 FROM node:18-alpine AS runner
