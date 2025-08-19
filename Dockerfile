@@ -38,4 +38,4 @@ USER nextjs
 EXPOSE 3000
 
 # Run the OpenNext server function
-CMD ["node", "server-function/index.mjs"]
+CMD ["node", "server-function/default/index.mjs"]
