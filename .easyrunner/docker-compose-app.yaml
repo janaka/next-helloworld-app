@@ -11,7 +11,7 @@ services:
     networks:
       - easyrunner_proxy_network
     labels:
-      - xyz.easyrunner.appKind=nextjs
+      - xyz.easyrunner.appFramework=nextjs
       - xyz.easyrunner.appIsPublic=true
 
 networks:
