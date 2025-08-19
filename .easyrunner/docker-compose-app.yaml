@@ -1,0 +1,25 @@
+name: easyrunner
+services:
+  next-helloworld-app:
+    image: localhost/next-helloworld-app:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - easyrunner_proxy_network
+    labels:
+      - xyz.easyrunner.appKind=nextjs
+      - xyz.easyrunner.appIsPublic=true
+
+networks:
+  easyrunner_proxy_network:
+    name: easyrunner_proxy_network
+    external: true
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
