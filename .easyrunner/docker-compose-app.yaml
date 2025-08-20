@@ -13,16 +13,9 @@ services:
     labels:
       - xyz.easyrunner.appFramework=nextjs
       - xyz.easyrunner.appIsPublic=true
-    volumes:
-      # Mount the assets directory to make it accessible to Caddy
-      - static-assets:/app/assets:ro
+
 networks:
   easyrunner_proxy_network:
     name: easyrunner_proxy_network
     external: true
     driver: bridge
-
-volumes:
-  caddy_data:
-  caddy_config:
-  static-assets:
