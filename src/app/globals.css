@@ -1,12 +1,33 @@
+/* Set base font size like EasyRunner */
+html {
+  font-size: 18pt;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
+  --primary: #10b981;
+  --primary-hover: #059669;
+  --secondary: #2563eb;
+  --secondary-hover: #1d4ed8;
+  --accent: #f59e0b;
+  --muted: #f8fafc;
+  --border: #e2e8f0;
+  --text-muted: #64748b;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --primary: #22c55e;
+    --primary-hover: #16a34a;
+    --secondary: #3b82f6;
+    --secondary-hover: #2563eb;
+    --accent: #fbbf24;
+    --muted: #1e293b;
+    --border: #334155;
+    --text-muted: #94a3b8;
   }
 }
 

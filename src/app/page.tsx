@@ -1,54 +1,92 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [helloMessage, setHelloMessage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const fetchHelloMessage = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/hello');
+      const data = await response.json();
+      setHelloMessage(data.message);
+    } catch (error) {
+      console.error('Error fetching hello message:', error);
+      setHelloMessage('Error loading message');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchHelloMessage();
+  }, []);
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
+        <div className={`${styles.logoContainer} ${styles.container} ${styles.default}`}>
+          <div className={styles.wrapper}>
+            <div className={styles.inner}>
+              <h1 className={styles.logoTitle}>EasyRunner</h1>
+            </div>
+          </div>
+        </div>
         <ol>
           <li>
-            Get started by editing <code>src/app/page.tsx</code>.
+            Get started with <strong>EasyRunner</strong> - simple self-managed app hosting.
           </li>
-          <li>Save and see your changes instantly.</li>
+          <li>Own your stack, no surprise bills!</li>
         </ol>
+
+        <div className={styles.apiSection}>
+          <h3>API Response Demo</h3>
+          {loading ? (
+            <p className={styles.loadingText}>Loading...</p>
+          ) : (
+            <div className={styles.apiResponse}>{helloMessage}</div>
+          )}
+          <button
+            onClick={fetchHelloMessage}
+            className={styles.refreshButton}
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'Refresh Time'}
+          </button>
+        </div>
 
         <div className={styles.ctas}>
           <a
             className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://easyrunner.xyz"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Image
               className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
+              src="/globe.svg"
+              alt="EasyRunner"
               width={20}
               height={20}
             />
-            Deploy now
+            Visit EasyRunner
           </a>
           <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="https://docs.easyrunner.xyz"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.secondary}
           >
-            Read our docs
+            Read the docs
           </a>
         </div>
       </main>
       <footer className={styles.footer}>
         <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://easyrunner.xyz/learn"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -59,10 +97,10 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Learn
+          Learn EasyRunner
         </a>
         <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://easyrunner.xyz/examples"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -76,7 +114,7 @@ export default function Home() {
           Examples
         </a>
         <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://easyrunner.xyz"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -87,7 +125,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to nextjs.org →
+          Go to EasyRunner →
         </a>
       </footer>
     </div>

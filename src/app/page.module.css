@@ -34,6 +34,93 @@
   grid-row-start: 2;
 }
 
+/* EasyRunner Logo Container Styles - EXACT COPY */
+.container {
+  position: relative;
+}
+
+.container .wrapper {
+  vertical-align: top;
+  position: relative;
+  max-width: 100%;
+  border-radius: inherit;
+}
+
+.container .wrapper .inner {
+  vertical-align: top;
+  position: relative;
+  max-width: 100%;
+  border-radius: inherit;
+  text-align: center;
+}
+
+/* Exact EasyRunner container01 styles */
+.logoContainer:not(:first-child) {
+  margin-top: 0rem !important;
+}
+
+.logoContainer:not(:last-child) {
+  margin-bottom: 0rem !important;
+}
+
+.logoContainer .wrapper {
+  display: inline-block;
+  width: 23rem;
+  background-color: transparent;
+  border-color: #22C563;
+  border-style: solid;
+  border-width: 1px;
+  /* NO border-radius - square corners */
+}
+
+.logoContainer .wrapper .inner {
+  --gutters: 2rem;
+  --padding-horizontal: 0rem;
+  --padding-vertical: 0rem;
+  padding: var(--padding-vertical) var(--padding-horizontal);
+}
+
+.logoContainer.default .wrapper .inner > * {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.logoContainer.default .wrapper .inner > *:first-child {
+  margin-top: 0 !important;
+}
+
+.logoContainer.default .wrapper .inner > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* EasyRunner text02 styles - EXACT COPY */
+.logoTitle:not(:first-child) {
+  margin-top: 0rem !important;
+}
+
+.logoTitle:not(:last-child) {
+  margin-bottom: 0rem !important;
+}
+
+.logoTitle {
+  color: #FFFFFF !important; /* White like EasyRunner, not green! */
+  font-family: var(--font-sarpanch), 'Sarpanch', sans-serif;
+  letter-spacing: 0.125rem;
+  width: calc(100% + 0.125rem);
+  font-size: 3.125em; /* Exact size from EasyRunner */
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 0;
+}
+
+.logoTitle a {
+  text-decoration: underline;
+}
+
+.logoTitle a:hover {
+  text-decoration: none;
+}
+
 .main ol {
   font-family: var(--font-geist-mono);
   padding-left: 0;
@@ -125,6 +212,42 @@ a.secondary {
   }
 }
 
+/* EasyRunner responsive breakpoints - EXACT COPY */
+@media (max-width: 736px) {
+  html {
+    font-size: 11pt;
+  }
+  
+  .logoContainer:not(:first-child) {
+    margin-top: 0rem !important;
+  }
+  
+  .logoContainer:not(:last-child) {
+    margin-bottom: 0rem !important;
+  }
+  
+  .logoContainer .wrapper .inner {
+    --gutters: 2rem;
+    --padding-horizontal: 0rem;
+    --padding-vertical: 0rem;
+  }
+  
+  .logoTitle:not(:first-child) {
+    margin-top: 0rem !important;
+  }
+  
+  .logoTitle:not(:last-child) {
+    margin-bottom: 0rem !important;
+  }
+  
+  .logoTitle {
+    letter-spacing: 0.109375rem;
+    width: calc(100% + 0.109375rem);
+    font-size: 3em;
+    line-height: 1.5;
+  }
+}
+
 @media (max-width: 600px) {
   .page {
     padding: 32px;
@@ -160,8 +283,76 @@ a.secondary {
   }
 }
 
+@media (max-width: 360px) {
+  .logoTitle {
+    font-size: 3em;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .logo {
     filter: invert();
   }
+}
+
+.apiSection {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.apiSection h3 {
+  margin: 0 0 1rem 0;
+  color: var(--foreground);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.apiSection p {
+  margin: 0.5rem 0;
+  color: var(--text-muted);
+}
+
+.apiResponse {
+  font-weight: 600;
+  color: var(--primary);
+  font-family: var(--font-geist-mono, monospace);
+  word-break: break-all;
+  background: var(--background);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin: 1rem 0;
+}
+
+.refreshButton {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.refreshButton:hover {
+  background: var(--primary-hover);
+}
+
+.refreshButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loadingText {
+  color: var(--text-muted);
+  font-style: italic;
 }
