@@ -214,10 +214,6 @@ a.secondary {
 
 /* EasyRunner responsive breakpoints - EXACT COPY */
 @media (max-width: 736px) {
-  html {
-    font-size: 11pt;
-  }
-  
   .logoContainer:not(:first-child) {
     margin-top: 0rem !important;
   }
