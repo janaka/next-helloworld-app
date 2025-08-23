@@ -40,6 +40,7 @@ export default function Home() {
             Get started with <strong>EasyRunner</strong> - simple self-managed app hosting.
           </li>
           <li>Own your stack, no surprise bills!</li>
+          <li>Something something something</li>
         </ol>
 
         <div className={styles.apiSection}>
