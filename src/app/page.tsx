@@ -39,7 +39,7 @@ export default function Home() {
           <li>
             Get started with <strong>EasyRunner</strong> - simple self-managed app hosting.
           </li>
-          <li>Own your stack, no surprise bills!</li>
+          <li>Own your stack, no surprise bills!2222</li>
           <li>Something something something</li>
         </ol>
 
