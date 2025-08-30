@@ -1,9 +1,8 @@
 name: easyrunner
 services:
-  next-helloworld-app:
-    image: localhost/next-helloworld-app:latest
-    ports:
-      - "3000:3000"
+  next-helloworld-app: # this name will be used as part of the service name and dns name
+    # fully qualified registry name when the container is built and published remotely (aka deploy flow B)
+    image: localhost/next-helloworld-app:latest # registry "localhost" when the container is built locally on the server (aka deploy flow A)
     environment:
       - PORT=3000
       - NODE_ENV=production
@@ -11,8 +10,9 @@ services:
     networks:
       - easyrunner_proxy_network
     labels:
-      - xyz.easyrunner.appFramework=nextjs
-      - xyz.easyrunner.appIsPublic=true
+      - xyz.easyrunner.appFramework=nextjs # used to optimise the Caddy config (standardbackend) | nextjs)
+      - xyz.easyrunner.appIsPublic=true # default false. true means the app is accessible from the internet via Caddy
+      - xyz.easyrunner.appContainerInternalPort=3000 # default 3000. the port the app process is listening on inside the container. Caddy will be configured to forward requests to this port
 
 networks:
   easyrunner_proxy_network:
