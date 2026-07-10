@@ -10,9 +10,11 @@ services:
     networks:
       - easyrunner_proxy_network
     labels:
-      xyz.easyrunner.appFramework: "nextjs" # used to optimise the Caddy config (standardbackend) | nextjs)
-      xyz.easyrunner.appIsPublic: true # default false. true means the app is accessible from the internet via Caddy
-      xyz.easyrunner.appContainerInternalPort: 3000 # default 3000. the port the app process is listening on inside the container. Caddy will be configured to forward requests to this port
+      # Canonical xyz.easyrunner.service.* schema (issues #159/#222).
+      xyz.easyrunner.service.type: web # public — Caddy routes it from the internet (was appIsPublic: true)
+      xyz.easyrunner.service.framework: "nextjs" # optimises the Caddy config (was appFramework)
+      xyz.easyrunner.service.port: 3000 # port the app process listens on inside the container (was appContainerInternalPort)
+      xyz.easyrunner.service.domain: hellonextjs.easyrunner.xyz # required since #222: public domain this web service is routed at
 
 networks:
   easyrunner_proxy_network:
