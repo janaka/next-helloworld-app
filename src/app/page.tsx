@@ -4,26 +4,36 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 
+async function getHelloMessage(): Promise<string> {
+  try {
+    const response = await fetch('/api/hello');
+    const data = await response.json();
+    return data.message;
+  } catch (error) {
+    console.error('Error fetching hello message:', error);
+    return 'Error loading message';
+  }
+}
+
 export default function Home() {
   const [helloMessage, setHelloMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
-  const fetchHelloMessage = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('/api/hello');
-      const data = await response.json();
-      setHelloMessage(data.message);
-    } catch (error) {
-      console.error('Error fetching hello message:', error);
-      setHelloMessage('Error loading message');
-    } finally {
-      setLoading(false);
-    }
+  const loadHelloMessage = () =>
+    getHelloMessage()
+      .then(setHelloMessage)
+      .finally(() => setLoading(false));
+
+  const fetchHelloMessage = () => {
+    setLoading(true);
+    loadHelloMessage();
   };
 
   useEffect(() => {
-    fetchHelloMessage();
+    // `loading` starts true, so the initial load only sets state asynchronously.
+    getHelloMessage()
+      .then(setHelloMessage)
+      .finally(() => setLoading(false));
   }, []);
   return (
     <div className={styles.page}>
